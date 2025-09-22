@@ -1,7 +1,6 @@
 'use client';
 
 import { useTimeout } from 'ahooks';
-import { useRouter } from 'next/navigation';
 import { memo } from 'react';
 
 import { useGlobalStore } from '@/store/global';
@@ -11,15 +10,16 @@ const ChangelogModal = memo<{ currentId?: string }>(({ currentId }) => {
     s.status.latestChangelogId,
     s.updateSystemStatus,
   ]);
-  const router = useRouter();
 
   useTimeout(() => {
     if (!currentId) return;
     if (!latestChangelogId) {
       updateSystemStatus({ latestChangelogId: currentId });
-    } else if (latestChangelogId !== currentId) {
-      router.push('/changelog/modal');
     }
+    // Changelog modal disabled as per rebranding requirements
+    // else if (latestChangelogId !== currentId) {
+    //   router.push('/changelog/modal');
+    // }
   }, 1000);
 
   return null;

@@ -1,11 +1,9 @@
 import {
-  Book,
   CircleUserRound,
   Cloudy,
   Database,
   Download,
   Feather,
-  FileClockIcon,
   Settings2,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -14,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { CellProps } from '@/components/Cell';
 import { enableAuth } from '@/const/auth';
 import { LOBE_CHAT_CLOUD } from '@/const/branding';
-import { DOCUMENTS, FEEDBACK, OFFICIAL_URL, UTM_SOURCE } from '@/const/url';
+import { FEEDBACK, OFFICIAL_URL, UTM_SOURCE } from '@/const/url';
 import { isServerMode } from '@/const/version';
 import { usePWAInstall } from '@/hooks/usePWAInstall';
 import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfig';
@@ -96,24 +94,25 @@ export const useCategory = () => {
       label: t('userPanel.cloud', { name: LOBE_CHAT_CLOUD }),
       onClick: () => window.open(`${OFFICIAL_URL}?utm_source=${UTM_SOURCE}`, '__blank'),
     },
-    {
-      icon: Book,
-      key: 'docs',
-      label: t('document'),
-      onClick: () => window.open(DOCUMENTS, '__blank'),
-    },
+    // User manual and changelog removed from mobile display
+    // {
+    //   icon: Book,
+    //   key: 'docs',
+    //   label: t('document'),
+    //   onClick: () => window.open(DOCUMENTS, '__blank'),
+    // },
     {
       icon: Feather,
       key: 'feedback',
       label: t('feedback'),
       onClick: () => window.open(FEEDBACK, '__blank'),
     },
-    {
-      icon: FileClockIcon,
-      key: 'changelog',
-      label: t('changelog'),
-      onClick: () => router.push('/changelog'),
-    },
+    // {
+    //   icon: FileClockIcon,
+    //   key: 'changelog',
+    //   label: t('changelog'),
+    //   onClick: () => router.push('/changelog'),
+    // },
   ].filter(Boolean) as CellProps[];
 
   const mainItems = [
