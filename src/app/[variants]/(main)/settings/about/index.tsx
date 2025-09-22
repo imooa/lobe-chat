@@ -1,6 +1,5 @@
 'use client';
 
-import { SiDiscord, SiGithub, SiMedium, SiRss, SiX } from '@icons-pack/react-simple-icons';
 import { Form } from '@lobehub/ui';
 import { Divider } from 'antd';
 import { createStyles } from 'antd-style';
@@ -8,12 +7,11 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
-import { BRANDING_EMAIL, BRANDING_NAME, SOCIAL_URL } from '@/const/branding';
-import { BLOG, OFFICIAL_SITE, PRIVACY_URL, TERMS_URL, mailTo } from '@/const/url';
+import { BRANDING_EMAIL, BRANDING_NAME } from '@/const/branding';
+import { PRIVACY_URL, TERMS_URL, mailTo } from '@/const/url';
 
 import AboutList from './features/AboutList';
 import Analytics from './features/Analytics';
-import ItemCard from './features/ItemCard';
 import ItemLink from './features/ItemLink';
 import Version from './features/Version';
 
@@ -45,22 +43,13 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
             ItemRender={ItemLink}
             items={[
               {
-                href: OFFICIAL_SITE,
-                label: t('officialSite'),
-                value: 'officialSite',
-              },
-              {
                 href: mailTo(BRANDING_EMAIL.support),
                 label: t('mail.support'),
                 value: 'support',
               },
-              {
-                href: mailTo(BRANDING_EMAIL.business),
-                label: t('mail.business'),
-                value: 'business',
-              },
             ]}
           />
+          {/* Social media section hidden from UI but kept in code
           <Divider style={{ marginBlock: 0 }} />
           <div className={styles.title}>{t('information')}</div>
           <AboutList
@@ -100,6 +89,7 @@ const Page = memo<{ mobile?: boolean }>(({ mobile }) => {
               },
             ]}
           />
+          */}
           <Divider style={{ marginBlock: 0 }} />
           <div className={styles.title}>{t('legal')}</div>
           <AboutList
